@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="dist">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/node_modules/react-scripts/node_modules/css-loader/node_modules/cssnano/node_modules/postcss-calc/node_modules/reduce-css-calc/node_modules/math-expression-evaluator/dist.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

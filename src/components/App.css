@@ -1,0 +1,12 @@
+.app__main{
+  margin: 36px 100px 0 36px;
+  display: flex;
+}
+
+
+@media screen and (max-width: 600px) {
+  .app__main {
+    display: flex;
+    flex-direction: column;
+  }
+}

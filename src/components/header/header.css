@@ -1,0 +1,49 @@
+.header {
+    position: sticky;
+    width: 100%;
+    border-bottom: 2px solid #F3F6F9;;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header__logoIcon {
+    width: 26px;
+    height: 40px;
+    margin-left: 35px;
+}
+
+.header__logoIconLines {
+    width: 26px;
+    margin-left: 27px;
+}
+
+
+.header__loginContainer {
+    position: absolute;
+    right: 0;
+    display: flex;
+    margin-right: 100px;
+}
+
+@media screen and (max-width: 600px) {
+    .header__loginContainer {
+        margin-right: 35px;
+    }
+}
+
+.header__loginIcon {
+    width: 43px;
+    height: 43px;
+    border-radius: 5px;
+    background: #F6CA65 url("../../../public/loginIcon.svg") no-repeat center;
+    place-self: center;
+}
+
+.header__loginName {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    color: #005B96;
+    margin-left: 11px;
+}
