@@ -13,9 +13,10 @@ const GenerateReportButton = ({label}) => {
     return (
         <div>
             <ReactToPrint
-                trigger={() => <button style={{background: `${selectedProjectOrGateway.length !== 1 ? 'gray' : '#1BC5BD'}`}}
-                                       disabled={selectedProjectOrGateway.length !== 1}
-                                       className='filterButton'>{label}</button>}
+                trigger={() => <button
+                    style={{background: `${selectedProjectOrGateway.length !== 1 ? 'gray' : '#1BC5BD'}`}}
+                    disabled={selectedProjectOrGateway.length !== 1}
+                    className='filterButton'>{label}</button>}
                 content={() => componentRef.current}
             />
 

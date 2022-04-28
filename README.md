@@ -8,7 +8,7 @@
 
 2. Enter the application folder and run in the command line
 
-```npm install```
+   ```npm install```
 
 
 3. Then run the application by typing in the command line
