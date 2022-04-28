@@ -6,8 +6,10 @@
     "chart.js": "^2.9.4",
     "moment": "^2.29.3",
     "react": "^18.0.0",
+    "react-datepicker": "^4.7.0",
     "react-dom": "^18.0.0",
     "react-scripts": "0.9.5",
+    "react-to-print": "^2.14.6",
     "recharts": "^2.1.9"
   },
   "devDependencies": {},

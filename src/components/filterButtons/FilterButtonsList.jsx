@@ -3,6 +3,7 @@ import ProjectsFilterButton from "./ProjectsFilterButton";
 import GatewaysFilterButton from "./GatewaysFilterButton";
 import {getDates} from "../../utils/getDates";
 import DateFilterButton from "./DateFilterButton";
+import GenerateReportButton from "./GenerateReportButton";
 
 const GATEWAY = 'Gateway';
 export const FROM = 'From';
@@ -16,13 +17,12 @@ const FilterButtonsList = () => {
     const datesList = getDates(START_DAY, STOP_DAY);
     return (
         <div className='filterButtonList'>
-            {/* create generic component for all these buttons*/}
 
             <ProjectsFilterButton/>
             <GatewaysFilterButton label={GATEWAY}/>
             <DateFilterButton label={FROM} data={datesList}/>
             <DateFilterButton label={TO} data={datesList}/>
-            <GatewaysFilterButton label='Generate Report'/>
+            <GenerateReportButton label='Generate Report'/>
 
         </div>
     );

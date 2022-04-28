@@ -7,7 +7,7 @@ import {getGateways, getProjects, getReport, getUsers} from "../API/api";
 import MainBoard from "./mainBoard/MainBoard";
 
 const App = () => {
-    const [selectedProject, setSelectedProject] = useState();
+    const [selectedProjectOrGateway, setSelectedProjectOrGateway] = useState();
     const [allData, setAllData] = useState();
     const [filteredDate, setFilteredDate] = useState();
 
@@ -16,11 +16,18 @@ const App = () => {
                 Promise.all([getUsers(), getProjects(), getGateways(), getReport({})]).then(values => {
                     return Promise.all(values.map(r => r.json()));
                 }).then(values => {
-                        setSelectedProject(values[1].data)
+                        const refactoredProjects = values[1].data.map(item => {
+                            return {name: item.name, id: item.projectId, itemType: 'project'}
+                        });
+                        const refactoredGateways = values[2].data.map(item => {
+                            return {name: item.name, id: item.gatewayId, itemType: 'gateway'}
+                        });
+
+                        setSelectedProjectOrGateway(refactoredProjects)
                         setAllData({
                             users: values[0].data,
-                            projects: values[1].data,
-                            gateways: values[2].data,
+                            projects: refactoredProjects,
+                            gateways: refactoredGateways,
                             reports: values[3].data
                         })
                     }
@@ -40,8 +47,8 @@ const App = () => {
         <DataContext.Provider value={{
             allData: allData,
             setAllData: setAllData,
-            setSelectedProject: setSelectedProject,
-            selectedProject: selectedProject,
+            setSelectedProjectOrGateway: setSelectedProjectOrGateway,
+            selectedProjectOrGateway: selectedProjectOrGateway,
             setFilteredDate: setFilteredDate,
             filteredDate: filteredDate
         }}>

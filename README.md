@@ -12,4 +12,5 @@
 
 
 3. Then run the application by typing in the command line
+
    ```npm start```

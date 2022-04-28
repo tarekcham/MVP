@@ -1,8 +1,8 @@
 import { createContext } from "react";
 export const DataContext = createContext({
-    filteredDate:{},
+    filteredDate:{from:'01.01.2021', to: '31.12.2021' },
     setFilteredDate:() => {},
-    selectedProject: {},
+    selectedProjectOrGateway: {},
     setSelectedProject:() => {},
     allData: {},
     setAllData: () => {}

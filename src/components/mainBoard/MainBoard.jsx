@@ -1,6 +1,6 @@
 import React from 'react';
 import './mainBoard.css';
-import ProjectsListContainer from "../projectsListContainer/ProjectsListContainer";
+import ProjectsOrGatewaysListContainer from "../projectsOrGatwaysListContainer/ProjectsOrGatewaysListContainer";
 import FilterButtonsList from "../filterButtons/FilterButtonsList";
 import MainBoardTitle from "./MainBoardTitle";
 import Chart from "../chart/Chart";
@@ -14,7 +14,7 @@ const MainBoard = () => {
                 <FilterButtonsList/>
             </div>
             <div className='mainBoard__bottomSection'>
-                <ProjectsListContainer/>
+                <ProjectsOrGatewaysListContainer/>
                 <Chart/>
             </div>
 

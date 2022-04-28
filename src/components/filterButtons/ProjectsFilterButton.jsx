@@ -3,16 +3,16 @@ import './fiterButtons.css';
 import {DataContext} from "../../ContextApi/DataContext";
 
 const ProjectsFilterButton = () => {
-    const {allData, setSelectedProject} = useContext(DataContext);
+    const {allData, setSelectedProjectOrGateway} = useContext(DataContext);
     const {projects} = allData;
 
     const selectProject = (id) => {
-        const selectedProject = projects.filter(item => item.projectId === id)[0];
-        setSelectedProject([selectedProject]);
+        let selectedProject = projects.filter(item => item.id === id)[0];
+        setSelectedProjectOrGateway([selectedProject]);
     }
 
-    const selectAllProject = () => {
-        setSelectedProject(projects);
+    const selectAllProjects = () => {
+        setSelectedProjectOrGateway(projects);
     }
 
     if (!projects.length) {
@@ -25,11 +25,11 @@ const ProjectsFilterButton = () => {
                 All Projects
             </button>
             <div className="dropdown-content">
-                <a onClick={() => selectAllProject('item.projectId')} href="#">All Projects</a>
+                <a onClick={selectAllProjects} href="#">All Projects</a>
 
                 {projects.map(item => (
-                    <div key={item.projectId}>
-                        <a onClick={() => selectProject(item.projectId)} href="#">{item.name}</a>
+                    <div key={item.id}>
+                        <a onClick={() => selectProject(item.id)} href="#">{item.name}</a>
                     </div>
                 ))}
             </div>

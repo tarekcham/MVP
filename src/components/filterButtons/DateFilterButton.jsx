@@ -1,19 +1,27 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {DataContext} from "../../ContextApi/DataContext";
 import './fiterButtons.css';
 import {getReport} from "../../API/api";
 import {FROM} from "./FilterButtonsList";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+const START_DATE = '01.01.2021';
 
 
 const DateFilterButton = ({label, data}) => {
+
+
     const {setFilteredDate, filteredDate, setAllData, allData} = useContext(DataContext);
+    const [selectedDate, setSelectedDate] = useState(new Date(START_DATE));
 
     const fetchReportData = async (date) => {
         const newReports = await getReport(date);
         return await newReports.json();
     }
 
-    const handleSelectDate = async (day, label) => {
+
+    const handleSelectDate = async (day) => {
+        setSelectedDate(new Date(day))
         let date;
         if (label === FROM) {
             date = {...filteredDate, from: day};
@@ -40,11 +48,7 @@ const DateFilterButton = ({label, data}) => {
                 {label} Date
             </button>
             <div className="dropdown-content">
-                {data.map(day => (
-                    <div key={day} onClick={() => handleSelectDate(day, label)}>
-                        <a href="#">{day}</a>
-                    </div>
-                ))}
+                <DatePicker selected={selectedDate} onChange={(date) => handleSelectDate(date)} />
             </div>
         </div>
     );

@@ -1,26 +1,27 @@
 import React, {useContext} from 'react';
-import './ProjectsList.css';
+import './ProjectsOrGatewaysList.css';
 import {DataContext} from "../../ContextApi/DataContext";
 import {countTotalAmount} from "../../utils/countTotalNumber";
 
-const ProjectsList = () => {
+export const componentRef = React.createRef();
 
-    const {allData, selectedProject} = useContext(DataContext);
+const ProjectsOrGatewaysList = () => {
+
+    const {allData, selectedProjectOrGateway} = useContext(DataContext);
     const {reports} = allData;
 
-    if (!selectedProject.length || !selectedProject.length) {
+    if (!selectedProjectOrGateway.length || !selectedProjectOrGateway.length) {
         return 'Sorry no Data to display';
     }
 
-
     return (
-        <table className='table'>
-            {selectedProject.map(project => (
-                    <div key={project.projectId}>
+        <table className='table' ref={componentRef}>
+            {selectedProjectOrGateway.map(item => (
+                    <div key={item.id}>
                         <div className='table__mainRow'>
                             <tr className='table--spaceAround'>
-                                <th>{project.name}</th>
-                                <th>TOTAL: {countTotalAmount(project, reports).toLocaleString()} USD</th>
+                                <th>{item.name}</th>
+                                <th>TOTAL: {countTotalAmount(item, reports).toLocaleString()} USD</th>
                             </tr>
                         </div>
 
@@ -31,8 +32,7 @@ const ProjectsList = () => {
                                 <td className='table--hide'>Transaction ID</td>
                                 <td>Amount</td>
                             </tr>
-
-                            {reports.filter(report => report.projectId === project.projectId).map(report => (
+                            {reports.filter(report => report[`${item.itemType === 'gateway' ? 'gatewayId' : 'projectId'}`] === item.id).map(report => (
                                 <tr className='table--row-width table--alignCenter table--row--height table--spaceAround'
                                     key={report.paymentId}>
                                     <td>{report.created}</td>
@@ -49,4 +49,4 @@ const ProjectsList = () => {
     );
 };
 
-export default ProjectsList;
+export default ProjectsOrGatewaysList;
