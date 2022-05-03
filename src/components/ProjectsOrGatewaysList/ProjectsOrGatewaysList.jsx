@@ -8,7 +8,12 @@ export const componentRef = React.createRef();
 const ProjectsOrGatewaysList = () => {
 
     const {allData, selectedProjectOrGateway} = useContext(DataContext);
-    const {reports} = allData;
+    let {reports} = allData;
+    reports = reports.sort((a, b)=>{
+        const c = new Date(a.created);
+        const d = new Date(b.created);
+        return c-d;
+    });
 
     if (!selectedProjectOrGateway.length || !selectedProjectOrGateway.length) {
         return 'Sorry no Data to display';
@@ -17,15 +22,15 @@ const ProjectsOrGatewaysList = () => {
     return (
         <table className='table' ref={componentRef}>
             {selectedProjectOrGateway.map(item => (
-                    <div key={item.id}>
-                        <div className='table__mainRow'>
+                    <tbody key={item.id}>
+                        <tbody className='table__mainRow'>
                             <tr className='table--spaceAround'>
                                 <th>{item.name}</th>
                                 <th>TOTAL: {countTotalAmount(item, reports).toLocaleString()} USD</th>
                             </tr>
-                        </div>
+                        </tbody>
 
-                        <div className='table__secondary_rows'>
+                        <tbody className='table__secondary_rows'>
 
                             <tr className='table--row-width table--spaceAround table--row--height table--alignCenter'>
                                 <td>Data</td>
@@ -35,14 +40,15 @@ const ProjectsOrGatewaysList = () => {
                             {reports.filter(report => report[`${item.itemType === 'gateway' ? 'gatewayId' : 'projectId'}`] === item.id).map(report => (
                                 <tr className='table--row-width table--alignCenter table--row--height table--spaceAround'
                                     key={report.paymentId}>
-                                    <td>{report.created}</td>
+                                    <td>{new Date(report.created).toLocaleDateString("uk-Uk")}</td>
+
                                     <td className='table--hide'>{report.paymentId}</td>
                                     <td>{report.amount}</td>
                                 </tr>
                             ))}
-                        </div>
+                        </tbody>
 
-                    </div>
+                    </tbody>
                 )
             )}
         </table>
