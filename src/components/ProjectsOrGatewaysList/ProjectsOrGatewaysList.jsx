@@ -22,15 +22,15 @@ const ProjectsOrGatewaysList = () => {
     return (
         <table className='table' ref={componentRef}>
             {selectedProjectOrGateway.map(item => (
-                    <tbody key={item.id}>
-                        <tbody className='table__mainRow'>
+                    <div key={item.id}>
+                        <div className='table__mainRow'>
                             <tr className='table--spaceAround'>
                                 <th>{item.name}</th>
                                 <th>TOTAL: {countTotalAmount(item, reports).toLocaleString()} USD</th>
                             </tr>
-                        </tbody>
+                        </div>
 
-                        <tbody className='table__secondary_rows'>
+                        <div className='table__secondary_rows'>
 
                             <tr className='table--row-width table--spaceAround table--row--height table--alignCenter'>
                                 <td>Data</td>
@@ -46,9 +46,9 @@ const ProjectsOrGatewaysList = () => {
                                     <td>{report.amount}</td>
                                 </tr>
                             ))}
-                        </tbody>
+                        </div>
 
-                    </tbody>
+                    </div>
                 )
             )}
         </table>
